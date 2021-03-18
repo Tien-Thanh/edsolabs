@@ -2,10 +2,10 @@ from trdg.generators import GeneratorFromDict
 import cv2
 import numpy as np
 
-generator = GeneratorFromDict()
+generator = GeneratorFromDict(count = 10)
+with open("filenames.txt", 'w') as fileObj:
+    for img, lbl in generator:
+        fileObj.write(img[1] + " " + lbl + "\n")
 
-for img, lbl in generator:
-    pass
-    #im = np.array(img)
-    #cv2.imshow("img", im)
-    #cv2.waitKey(2000)
+    
+

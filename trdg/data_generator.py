@@ -2,7 +2,7 @@ import os
 import random as rnd
 import uuid
 from PIL import Image, ImageFilter
-
+import numpy as np
 from trdg import computer_text_generator, background_generator, distorsion_generator
 
 try:
@@ -242,15 +242,15 @@ class FakeTextDataGenerator(object):
             image_name = "{}_{}.{}".format(text, str(index), extension)
             mask_name = "{}_{}_mask.png".format(text, str(index))
 
-        print("dir: ", out_dir)
 
         # Save the image
         if out_dir is not None:
             name = uuid.uuid4().hex + '.' + extension
             final_image.save(os.path.join(out_dir, name))
+            #print(np.array(final_image))
             if output_mask == 1:
                 final_mask.save(os.path.join(out_dir, mask_name))
         else:
             if output_mask == 1:
                 return final_image, final_mask
-            return final_image
+        return final_image, name
